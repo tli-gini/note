@@ -18,6 +18,7 @@ Exercise:
 
 First Try:
 
+```html
 <html>
   <head>
     <title>JavaScript</title>
@@ -55,6 +56,42 @@ First Try:
         console.log(e);
       }
     </script>
-
   </body>
 </html>
+```
+
+Solution:
+
+```html
+<html>
+  <head>
+    <title>JavaScript</title>
+  </head>
+  <body>
+    <h2>JavaScript</h2>
+    <button type="button" onclick="message1()">Click 1</button>
+    <button type="button" onclick="message2()">Click 2</button>
+    <button type="button" onclick="message3()">Click 3</button>
+    <script>
+      var var1, var2, var3;
+      var1 = var2 = var3 = 0;
+
+      function message1() {
+        var1++;
+        message();
+      }
+      function message2() {
+        var2++;
+        message();
+      }
+      function message3() {
+        var3++;
+        message();
+      }
+      function message() {
+        document.querySelector("h2").innerHTML = var1 + " " + var2 + " " + var3;
+      }
+    </script>
+  </body>
+</html>
+```
