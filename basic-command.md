@@ -95,3 +95,159 @@ Solution:
   </body>
 </html>
 ```
+
+# JavaScript-Document Object Model (DOM)
+
+-console.dir(document)
+
+Practice: DOM Selection
+
+```html
+<script>
+  var el1 = document.getElementById("one");
+  el1.style.background = "orange";
+  console.log(el1);
+  //   el1.style.backgroundColor = "blue";
+
+  var el2 = document.getElementsByClassName("highlight");
+  console.log(el2);
+
+  var el3 = document.getElementsByTagName("li");
+  console.log(el3);
+
+  var el4 = document.querySelector(".highlight");
+  console.log(el4);
+
+  var el5 = document.querySelectorAll(".highlight");
+  console.log(el5);
+  el5[1].style.color = "yellow";
+  el5[1].style.backgroundColor = "blue";
+</script>
+```
+
+Practice: Element Text Manipulation
+
+```html
+<script>
+  var el1 = document.querySelector(".highlight");
+  console.log(el1);
+  console.dir(el1);
+  //only first class="highlight"
+
+  el1.innerHTML = "hello! <br> world!";
+  console.log(el1.innerHTML);
+  //Output:hello! <br> world!
+
+  el1.textContent = "HELLO! <br> WORLD!";
+  console.log(el1.textContent);
+  //Output:HELLO! <br> WORLD!
+  //textContent:純文本。
+
+  el1.outerHTML = "Hello! <br> World!";
+  console.log(el1.outerHTML);
+  //Output:<li class="highlight">HELLO! &lt;br&gt; WORLD!</li>
+</script>
+```
+
+Practice: Change Classes DOM
+
+```html
+<style>
+  .test1 {
+    background-color: aquamarine;
+    color: rgba(89, 89, 171, 0.643);
+  }
+  .test2 {
+    color: brown;
+  }
+  .test3 {
+    padding: 10px;
+    border: 1px solid black;
+    margin: 10px;
+  }
+</style>
+<body>
+  <h1 class="test3">Lorem ipsum dolor sit amet consectetuer adipiscing elit</h1>
+
+  <script>
+    var el1 = document.querySelector("h1");
+    console.dir(el1);
+    //el1.className = "test1";
+    el1.classList.add("test1");
+    console.log(el1);
+    //Output:<h1 class="test3 test1"> Lorem ipsum dolor sit amet consectetuer adipiscing elit </h1>
+
+    //Console
+    //el1.classList.toggle("test1");
+    //Output:False
+    //Output:True
+
+    //el1.classList.remove("test1");
+  </script>
+</body>
+```
+
+Practice: Change Styles DOM
+
+```html
+<style>
+  .test {
+    margin: 10px;
+    padding: 10px;
+    border: 5px dotted palevioletred;
+    color: hotpink;
+    background-color: cornsilk;
+    font-family: cursive;
+  }
+</style>
+<body>
+  <h1 class="test">Lorem ipsum dolor sit amet consectetuer adipiscing elit</h1>
+  <!-- el1[0] -->
+  <p class="test">Aenean commodo ligula eget dolor aenean massa</p>
+  <!-- el1[1] -->
+  <script>
+    var el1 = document.getElementsByClassName("test");
+    console.dir(el1);
+    console.log(el1[0]);
+    var temp = el1[0];
+    temp.style.backgroundColor = "khaki";
+    temp.style.color = "white";
+    temp.style.fontFamily = "fantasy";
+    temp.style.border = "7px double brown";
+    temp.style.display = "block";
+  </script>
+</body>
+```
+
+Practice: Element Attribute Manipulation
+
+```html
+<body>
+  <h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit</h1>
+  <p>Aenean commodo ligula eget dolor aenean massa</p>
+  <a href="https://betterplaceholder.com/" target="_blank"
+    ><img src="https://fakeimg.pl/150x150/9e6565/803636"
+  /></a>
+  <img src="https://fakeimg.pl/350x150/6d659e/483680" />
+
+  <script>
+    var el1 = document.getElementsByTagName("a");
+    console.log(el1);
+    console.log(el1[0]);
+
+    var el2 = document.getElementsByTagName("img");
+    console.log(el2);
+    console.log(el2[1]);
+
+    var temp = el1[0].getAttribute("href");
+    console.log(temp);
+    el1[0].setAttribute("href", "https://fonts.google.com/");
+    //替換成另一個href
+
+    var newImg = el2[1].getAttribute("src");
+    console.log(newImg);
+    el2[1].setAttribute("src", "https://fakeimg.pl/250x150/6c9e65/2b7034");
+    //替換成另一個img
+  </script>
+</body>
+```
