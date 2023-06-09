@@ -251,3 +251,46 @@ Practice: Element Attribute Manipulation
   </script>
 </body>
 ```
+
+Practice: Events Click
+-addEventListener
+
+```html
+<style>
+  .test {
+    color: brown;
+    background-color: floralwhite;
+  }
+</style>
+<body>
+  <ul>
+    <li>Hello World</li>
+    <li>Lorem ipsum dolor sit amet consectetuer.</li>
+    <li>Aenean commodo ligula eget dolor.</li>
+    <li>Aenean massa cum sociis natoque penatibus.</li>
+  </ul>
+  <script>
+    var list = document.querySelectorAll("li");
+    for (var abc = 0; abc < list.length; abc++) {
+      list[abc].addEventListener("click", function () {
+        console.log(this);
+        var temp = this.classList.toggle("test");
+        console.log(temp);
+      });
+    }
+    //   var el1 = document.querySelector("ul");
+    //   el1.addEventListener("click", function () {
+    //     console.log("click");
+    //     el1.style.backgroundColor = "cornflowerblue";
+    //     el1.style.color = "bisque";
+    //     el1.style.border = "3px dotted aliceblue";
+    //   });
+  </script>
+</body>
+```
+
+Practice:
+
+```html
+
+```
