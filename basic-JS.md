@@ -443,3 +443,145 @@ let hello = function () {};
 ```js
 let hello = () => {};
 ```
+
+# class 與 this
+
+- class 的基本操作
+
+```js
+//類似構造函數
+//constructor => 構造函數
+class Card {
+  constructor(initName) {
+    this.name = initName;
+  }
+}
+
+const c1 = new Card("Gini");
+console.log("c1:", c1);
+//Output:c1: Card {name: 'Gini'}
+console.log(c1.name);
+//Output:Gini
+```
+
+- this 的基本操作
+  跟著當下的執行者做變化
+
+```js
+class Card {
+  constructor(initName) {
+    this.name = initName;
+  }
+  hello() {
+    console.log("hello", this.name);
+  }
+}
+
+const c1 = new Card("Gini");
+c1.hello();
+//Output:hello Gini
+
+const a1 = { name: "a1a1a1" };
+a1.hellohello = c1.hello;
+a1.hellohello();
+//Output:hello a1a1a1
+```
+
+- class 繼承
+
+```js
+//寫兩個 class, 呈父子關係（主從關係）
+class Car {
+  constructor(initName) {
+    this.name = initName;
+  }
+  start() {
+    console.log("車子啟動");
+  }
+  //Output:車子啟動
+}
+
+//extends => 繼承
+//繼承 class Car 的 start function
+//super =>可調用 class Car 的 constructor
+class Porshe extends Car {
+  constructor(namePorshe) {
+    super(namePorshe);
+  }
+}
+
+const p1 = new Porshe("保時捷");
+p1.start();
+console.log("name:", p1.name);
+//Output:name: 保時捷
+```
+
+super 的另一種應用
+
+```js
+class Car {
+  constructor(initName) {
+    this.name = initName;
+  }
+  start() {
+    console.log("車子啟動");
+  }
+}
+
+class Porshe extends Car {
+  constructor(namePorshe) {
+    super(namePorshe);
+  }
+
+  //super的另一種應用
+  //直接應用class Car 的 function
+  start2() {
+    super.start();
+    console.log("車子排氣");
+  }
+  //Output:車子排氣
+}
+
+const p1 = new Porshe("保時捷");
+p1.start2();
+console.log("name:", p1.name);
+```
+
+承上
+
+```js
+class Car {
+  constructor(initName) {
+    this.name = initName;
+  }
+  start() {
+    console.log("車子啟動");
+  }
+}
+
+class Porshe extends Car {
+  constructor(namePorshe) {
+    super(namePorshe);
+  }
+
+  //或是直接覆蓋class Car 的 function
+  start() {
+    console.log("保時捷啟動");
+  }
+  //Output:保時捷啟動
+}
+
+const p1 = new Porshe("保時捷");
+p1.start();
+console.log("name:", p1.name);
+```
+
+```js
+//若覆蓋後再用super.start()，
+//可使父層和子層的function都能用
+
+  start() {
+    super.start();
+    console.log("保時捷啟動");
+  }
+```
