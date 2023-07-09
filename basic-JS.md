@@ -17,6 +17,36 @@ let bag2 = null;
 //undefined 不等於 null
 ```
 
+null:value of nothing
+
+```js
+var a = null;
+```
+
+undefined:absence of value
+
+```js
+var signedIn;
+console.log(signedIn);
+//Output:undefined
+```
+
+NaN:Not-A-Number
+
+```js
+"hello" / 5;
+//Output:NaN
+```
+
+- all of the falsy values:
+
+1. the Boolean value: false
+2. the null type
+3. the undefined type
+4. the number: 0
+5. the empty string: ""
+6. the odd value: NaN
+
 - string
 
 ```js
@@ -198,6 +228,12 @@ switch (key) {
 # 迴圈(loop)控制：for, while
 
 - for
+
+```js
+for (start; stop; step) {
+  // do this thing
+}
+```
 
 ```js
 for (let i = 3; i < 10; i += 2) {
@@ -584,4 +620,235 @@ console.log("name:", p1.name);
     super.start();
     console.log("保時捷啟動");
   }
+```
+
+# Udacity Quiz
+
+- Quiz: JuliaJames
+  - Directions:
+    Write a while loop that:
+
+1.  Loop through the numbers 1 to 20
+2.  If the number is divisible by 3, print "Julia"
+3.  If the number is divisible by 5, print "James"
+4.  If the number is divisible by 3 and 5, print "JuliaJames"
+5.  If the number is not divisible by 3 or 5, print the number
+
+```js
+/*
+ * QUIZ REQUIREMENTS
+ * - Your code should have a variable `x` with a starting value of `1`
+ * - Your code should include a `while` loop
+ * - Your `while` loop should have a stop condition
+ * - Your code should use a conditional statement
+ * - Your code should increment `x` by `1` each time the loop executes
+ * - Your code should produce the expected output
+ * - Your code should not be empty
+ * - BE CAREFUL ABOUT THE PUNCTUATION AND THE EXACT WORDS TO BE PRINTED.
+ */
+```
+
+My solution 1:
+
+```js
+var x = 1;
+
+while (x <= 20) {
+  switch (x) {
+    case 3:
+    case 6:
+    case 9:
+    case 12:
+    case 18:
+      console.log("Julia");
+      break;
+
+    case 5:
+    case 10:
+    case 20:
+      console.log("James");
+      break;
+
+    case 15:
+      console.log("JuliaJames");
+      break;
+
+    default:
+      console.log(x);
+      break;
+  }
+  x++;
+}
+
+//Output:1 2 Julia 4 James Julia 7 8 Julia James 11 Julia 13 14 JuliaJames 16 17 Julia 19 James
+
+/*
+What Went Wrong:
+Your `while` loop is missing a conditional statement. 
+Use a conditional statement to check if `x` is divisible by 3, 5, or 3 and 5.
+*/
+```
+
+My solution 2:
+
+```js
+var x = 1;
+
+while (x <= 20) {
+  if (x % 3 === 0 && x % 5 !== 0) {
+    console.log("Julia");
+  } else if (x % 5 === 0 && x % 3 !== 0) {
+    console.log("James");
+  } else if (x % 3 === 0 && x % 5 === 0) {
+    console.log("JuliaJames");
+  } else {
+    console.log(x);
+  }
+  x++;
+}
+
+//Output:1 2 Julia 4 James Julia 7 8 Julia James 11 Julia 13 14 JuliaJames 16 17 Julia 19 James
+```
+
+One of the possible solutions:
+
+```js
+var x = 1;
+
+// while loop with a stop condition
+while (x <= 20) {
+  if (x % 3 === 0 && x % 5 === 0) {
+    console.log("JuliaJames");
+  } else if (x % 5 === 0) {
+    console.log("James");
+  } else if (x % 3 === 0) {
+    console.log("Julia");
+  } else {
+    console.log(x);
+  }
+  // increment x at the end of each loop
+  x = x + 1;
+}
+```
+
+- Quiz: Changing the Loop
+  Before: while loop
+
+```js
+var x = 9;
+while (x >= 1) {
+  console.log("hello " + x);
+  x--;
+}
+```
+
+After: for loop
+
+```js
+for (let x = 9; x >= 1; x--) {
+  console.log("hello " + x);
+}
+```
+
+# Object 拷貝/複製
+
+- Object 沒有拷貝或複製的狀況：
+
+```js
+let a = { x: 3, y: 4 };
+let b = a; //沒有建立新物件，參考到同個物件實體
+b.x = 5;
+console.log(a.x);
+
+//Ouput:5
+```
+
+- Object 的拷貝/複製
+
+```js
+let a = { x: 3, y: 4 };
+let b = { ...a }; //建立新物件，同時複製原物件的資料
+b.x = 5;
+console.log(a.x);
+
+//Ouput:3
+```
+
+- 淺拷貝：Shallow Copy
+
+1. 僅拷貝物件的第一層資料
+   a. 物件中包含其他物件，產生層次
+   b. 常見的拷貝語法工具都是淺拷貝
+
+```js
+let a = { x: 3, y: 4, data: [1, 2, 3] };
+//data 為第二層資料
+
+//使用其餘運算符號...拷貝
+let b = { ...a };
+
+//使用內建方法 Object.assign()拷貝
+let c = Object.assign({}, a);
+```
+
+2. 第二層以上的資料不會真的拷貝，仍參考到原來的物件實體
+3. 沒有真正拷貝的資料，會互相影響
+
+```js
+let a = { x: 3, y: 4, data: [1, 2, 3] };
+//data 中的資料沒有真的被拷貝
+//物件a和b中的data仍參考到原來的物件實體
+let b = { ...a };
+b.data[0] = 4; //b對data的操作影響到a的data
+
+console.log(a.data);
+//Ouput:[4, 2, 3]
+```
+
+- 深拷貝：Deep Copy
+
+1. 完全拷貝物件底下所有層次的資料
+   a. 使用 JSON.stringify() 將物件字串化(serialize)
+   b. 使用 JSON.parse() 根據字串化的資料重新建立物件結構，完成深拷貝
+
+```js
+let a = { x: 3, y: 4, data: [1, 2, 3] };
+
+//將物件結構字串化
+let str = JSON.stringify(a);
+
+//根據字串化的資料重新建立物件結構
+let b = JSON.parse(str);
+```
+
+2. 拷貝後的物件和原來的物件完全分開獨立
+
+```js
+let a = { x: 3, y: 4, data: [1, 2, 3] };
+let str = JSON.stringify(a);
+let b = JSON.parse(str);
+//以上完成深拷貝，兩個物件完全獨立且不互相影響且不互相影響
+
+b.data[0] = 4; //b對data的操作不影響a的data
+
+console.log(a.data);
+//Ouput:[1, 2, 3]
+```
+
+3. 無法拷貝函數、Symbol 等資料（即不能字串化的資料）
+
+```js
+let a = {
+  x: 3,
+  y: 4,
+  test: function () {
+    console.log("Hello");
+  },
+};
+let str = JSON.stringify(a);
+let b = JSON.parse(str);
+//test是函數，無法拷貝
+
+b.test();
+//Error!
 ```
