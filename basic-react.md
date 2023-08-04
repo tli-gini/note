@@ -71,5 +71,98 @@ export default App;
 rfce
 
 ```js
+import React from "react";
 
+function App() {
+  return <div>App</div>;
+}
+
+export default App;
+```
+
+#### First Component in Detail
+
+- capital letter
+- must return something
+- JSX syntax (return html)
+
+#### JSX Rules
+
+- return single element (only one parent element)
+
+```js
+function App() {
+  return (
+    <div className="App">
+      <h1>react tutorial</h1>
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+    </div>
+  );
+}
+```
+
+- camelCase property naming convention
+
+```js
+return (
+  <div tabIndex={1}>
+    <button onClick={myFunction}>click me</button>
+    <label htmlFor='name'>Name</label>
+    <input readOnly={true} id='name' />
+  </div>
+)
+
+// in html
+<div tabindex="1">
+    <button onclick="myFunction()">click me</button>
+    <label for='name'>Name</label>
+    <input readonly id='name' />
+</div>
+```
+
+- className instead of class
+
+```js
+return <div className="someValue">hello</div>;
+```
+
+- close every element
+
+```js
+return <img />;
+```
+
+### Nest Components
+
+Before:
+
+```js
+function Greeting() {
+  return (
+    <div>
+      <h2>john doe</h2>
+      <p>this is my message</p>
+    </div>
+  );
+}
+```
+
+After:
+
+```js
+function Greeting() {
+  return (
+    <div>
+      <Person />
+      <Message />
+    </div>
+  );
+}
+
+const Person = () => <h2>john doe</h2>;
+const Message = () => {
+  return <p>this is my message</p>;
+};
 ```
