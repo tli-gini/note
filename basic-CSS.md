@@ -1,8 +1,9 @@
 # CSS length units
 
-- Absolute:絕對
-  - px
-  - in
+### Absolute:絕對
+
+- px
+- in
 
 ```css
 /* px */
@@ -20,12 +21,13 @@
 }
 ```
 
-- Relative:相對
-  - rem
-  - Points
-  - Pica
-  - viewport width
-  - viewport height
+### Relative:相對
+
+- rem
+- Points
+- Pica
+- viewport width
+- viewport height
 
 ```css
 /* rem */
@@ -83,8 +85,9 @@
 
 # CSS Colors
 
-- RGB
-  - red: 0-255, green: 0-255, blue: 0-255
+### RGB
+
+- red: 0-255, green: 0-255, blue: 0-255
 
 ```css
 body {
@@ -92,11 +95,71 @@ body {
 }
 ```
 
-- Hexadecimal
-  - red: 00-FF, green: 00-FF, blue: 00-FF
+### Hexadecimal
+
+- red: 00-FF, green: 00-FF, blue: 00-FF
 
 ```css
 body {
   background-color: #ff00ff;
+}
+```
+
+# RWD (Responsive Web Design): 回應式設計
+
+- Media Query: 根據螢幕寬度，調整 CSS 設定
+
+```css
+@media (max-width: 1200px){
+  螢幕寬度在 1200px 以下
+};
+```
+
+- flex-wrap: 將左右並排調整成上下並排
+
+- <br/> 的顯示和隱藏，控制內容是否換行
+
+```css
+/* 換行 */
+br {
+  display: block;
+}
+
+/* 不換行 */
+br {
+  display: none;
+}
+```
+
+- 利用顯示和隱藏決定要展示的版面
+
+```html
+<div class="desktop">
+  電腦版
+  <div>
+    <div class="mobile">
+      手機版
+      <div></div>
+    </div>
+  </div>
+</div>
+```
+
+```css
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  /* 螢幕寬度在 500px 以下 */
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
 }
 ```
