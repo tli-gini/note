@@ -5,6 +5,18 @@
   text-align: center;
 }
 
+.desktop-menu {
+  text-align: center;
+  display: block;
+  /* 顯示 */
+}
+
+.mobile-menu {
+  text-align: center;
+  display: none;
+  /* 隱藏 */
+}
+
 .list {
   display: flex;
   justify-content: center;
@@ -17,7 +29,7 @@
   margin: 10px;
   background-color: #ffcccc;
 }
-/* products總寬：(280+10+10)*4=1200 */
+/* products 總寬：(280+10+10)*4=1200 */
 
 /* 市面上桌機螢幕最小為 1280px */
 /* 市面上手機螢幕最小為 360px */
@@ -41,6 +53,16 @@
     font-size: 16px;
   }
   /* 手機文字改小，標題才不會換行 */
+
+  .desktop-menu {
+    display: none;
+    /* 隱藏 */
+  }
+
+  .mobile-menu {
+    display: block;
+    /* 顯示 */
+  }
 
   .list {
     /* 不需重複設定 */
