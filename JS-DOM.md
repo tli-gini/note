@@ -68,3 +68,103 @@ document.getElementsByTagName();
   - document.body
 - document 物件包含有用的方法：
   - document.querySelector("CSS 選擇器")
+
+## 操作演練
+
+```html
+<body>
+  <script>
+    //1. 認識內建的 window 物件（HTML DOM 的最上層）
+    console.log(window);
+    //取得視窗寬、高 (會隨視窗滑動改變)
+    console.log(window.innerHeight, window.innerWidth);
+    console.log(innerHeight, innerWidth);
+    //透過 screen 物件，取得螢幕尺寸
+    console.log(window.screen.width, window.screen.height);
+    //取得網址列的內容
+    console.log(window.location.href);
+    //更改網址列的內容（跳轉網頁）
+    ////window.location.href = "https://www.google.com/";
+
+    //2. 認識 document 物件
+    console.log(window.document);
+    console.dir(window.document);
+    //取得網頁標題
+    console.log(document.title);
+    //更改網頁標題
+    document.title = "新的標題";
+    //取得 body 標籤
+    console.log(document.body);
+    //取得 body 標籤內文
+    console.log(document.body.innerHTML);
+    //更改網頁主畫面內容（body 標籤內文）
+    document.body.innerHTML = "hello world";
+  </script>
+</body>
+```
+
+## 其他標籤物件
+
+- 取得標籤物件
+- 操作標籤物件
+
+### 取得標籤物件
+
+- 透過標籤的 ID 屬性建立連結。
+
+1. 在 HTML 想要操作的標籤加上 id 屬性。
+
+```html
+<div id="content">這是一段字</div>
+<span id="keyword">hello world</span>
+```
+
+2. 在 JavaScript 用 document.querySelector() 方法取得標籤物件。
+
+```js
+let divElement = document.querySelector("#content");
+let spanElement = document.querySelector("#keyword");
+```
+
+### 操作標籤物件
+
+- 操作標籤物件的 HTML 屬性和 CSS 設定
+
+1. 取得標籤物件。
+
+```html
+<div id="content">這是一段字</div>
+<script>
+  let divElement = document.querySelector("#content");
+</script>
+```
+
+2. 操作標籤物件的 HTML 和 CSS。
+
+```html
+<div id="content">這是一段字</div>
+<script>
+  let divElement = document.querySelector("#content");
+  divElement.innerHTML = "這是新的字";
+  divElement.className = "welcome";
+  divElement.style.fontSize = "30px";
+  divElement.style.color = "blue";
+</script>
+```
+
+### 配合使用者點擊
+
+- 使用者點擊後才操作 HTML 標籤
+- 在希望被點擊的標籤加上 onclick 屬性
+
+```html
+<div id="content">這是一段字</div>
+<button onclick="change();">Click</button>
+<script>
+  function change() {
+    let divElm = document.querySelector("#content");
+    divElm.innerHTML = "現在換成這行字";
+    divElm.style.color = "pink";
+  }
+</script>
+```
