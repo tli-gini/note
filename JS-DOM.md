@@ -168,3 +168,35 @@ let spanElement = document.querySelector("#keyword");
   }
 </script>
 ```
+
+### 網頁畫面操作練習
+
+```html
+<body>
+  <div class="content">
+    <span onclick="click1()">關於我</span>
+    <span onclick="click2()">學經歷</span>
+  </div>
+  <hr />
+  <div id="text1" style="display: block">大家好，我是 Gini！</div>
+  <div id="text2" style="display: none">我畢業於中興大學農藝學系。</div>
+
+  <script>
+    function click1() {
+      //取得標籤物件
+      let aboutMe = document.querySelector("#text1");
+      let experience = document.querySelector("#text2");
+      //操作標籤物件
+      aboutMe.style.display = "block";
+      experience.style.display = "none";
+    }
+
+    function click2() {
+      let aboutMe = document.querySelector("#text1");
+      let experience = document.querySelector("#text2");
+      aboutMe.style.display = "none";
+      experience.style.display = "block";
+    }
+  </script>
+</body>
+```
