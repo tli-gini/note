@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Handling Practice</title>
+    <style>
+        *{
+            font-family: fantasy;
+        }
+      .btn {
+        font-size: larger;
+        color: #555;
+        padding: 10px;
+        padding-top: 15px;
+        background-color:#ffcccc ;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Event Handling Practice</h3>
+    <span 
+    class="btn" 
+    onmouseover="over(this);" onmouseout="out(this);"
+    onmousedown="down(this);" onmouseup="up(this);"
+    >Click Here！</span>
+    <span 
+    class="btn" 
+    onmouseover="over(this);" onmouseout="out(this);"
+    onmousedown="down(this);" onmouseup="up(this);"
+    >Click Me ：）</span>
+  </body>
+  <script>
+    function over(elem) {
+      elem.style.backgroundColor = "#ddaaaa";
+    }
+    function out(elem) {
+      elem.style.backgroundColor = "#ffcccc";
+    }
+    function down(elem){
+        elem.style.color="#fff";
+    }
+    function up(elem){
+        elem.style.color="#555";
+    }
+  </script>
+</html>

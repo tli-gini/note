@@ -1,4 +1,4 @@
-# 基本變數
+#＃ 基本變數
 
 ```js
 let myName = "註冊成功";
@@ -90,7 +90,7 @@ console.log(a1);
 //Error
 ```
 
-# 陣列（Array）、物件（Object）
+#＃ 陣列（Array）、物件（Object）
 
 - Array
 
@@ -144,7 +144,7 @@ const Wall = [Post1, Post2];
 console.log(Wall);
 ```
 
-# 流程控制：if else, switch case
+#＃ 流程控制：if else, switch case
 
 - 邏輯運算子：&&, ||, !
 
@@ -225,7 +225,7 @@ switch (key) {
 //Output:沒分數
 ```
 
-# 迴圈(loop)控制：for, while
+#＃ 迴圈(loop)控制：for, while
 
 - for
 
@@ -358,7 +358,7 @@ while (condition) {
 //Output:0 1 2 3 4 5 6 7 8 9 10
 ```
 
-# 函數：function
+#＃ 函數：function
 
 - 宣告
 
@@ -480,7 +480,7 @@ let hello = function () {};
 let hello = () => {};
 ```
 
-# class 與 this
+#＃ class 與 this
 
 - class 的基本操作
 
@@ -622,7 +622,7 @@ console.log("name:", p1.name);
   }
 ```
 
-# Udacity Quiz
+### Udacity Quiz
 
 - Quiz: JuliaJames
   - Directions:
@@ -750,7 +750,119 @@ for (let x = 9; x >= 1; x--) {
 }
 ```
 
-# Object 拷貝/複製
+- Quiz: Laugh it Off
+  Directions:
+  Write a function called laugh() that takes one parameter,
+  num that represents the number of "ha"s to return.
+
+Here's an example of the output and how to call the function that you will write:
+
+```js
+console.log(laugh(3));
+
+//Prints: "hahaha!"
+
+/*
+ * QUIZ REQUIREMENTS
+ * - Your code should have a `laugh()` function
+ * - Your `laugh()` function should have one parameter named `num`
+ * - Your `laugh()` function should return the correct number of laughs
+ */
+```
+
+My solution:
+
+```js
+var ha = "";
+
+function laugh(num) {
+  for (let a = 0; a < num; a++) {
+    ha += "ha";
+  }
+  ha += "!";
+  return ha;
+}
+
+console.log(laugh(5));
+
+//Ouput:hahahahaha!
+```
+
+One of the possible solutions:
+
+```js
+var sound = "";
+function laugh(num) {
+  for (var x = 0; x < num; x++) {
+    sound = sound + "ha";
+  }
+  sound = sound + "!";
+  return sound;
+}
+
+console.log(laugh(3));
+```
+
+## Event Handling 事件處理
+
+- 事件種類：
+
+  - click 滑鼠點擊
+  - mouseover 滑鼠移入
+  - mouseout 滑鼠移出
+  - mousedown 滑鼠按下
+  - mouseup 滑鼠放開
+
+- 事件處理三關鍵
+
+  - 哪個標籤發生事件
+  - 事件種類
+  - 事件對應的處理函式
+
+- 註冊事件處理函式
+
+  - 基本語法：
+
+  ```html
+  <!-- <div 事件名稱="程式碼">標籤內文</div> -->
+  <!-- <button 事件名稱="程式碼">標籤內文</button> -->
+
+  <div onclick="change()">Click</div>
+  <script>
+    function change() {
+      document.body.innerHTML = "這是新的字";
+    }
+  </script>
+  ```
+
+- 事件處理範例一：
+  - 使用 this 關鍵字代表觸發事件的標籤
+  - 點擊改變標籤本身的內文：
+  ```html
+  <div onclick="change(this)">原本的內文</div>
+  <script>
+    function change(elem) {
+      elem.innerHTML = "新的內文";
+    }
+    //this 代表這個<div>
+  </script>
+  ```
+- 事件處理範例二：
+  - 多個事件搭配使用
+  - 滑鼠按住、放開同時運作：
+  ```html
+  <button onmousedown="down(this)" onmouseup="up(this)">Click</button>
+  <script>
+    function down(elem) {
+      elem.style.color = "red";
+    }
+    function up(elem) {
+      elem.style.color = "blue";
+    }
+  </script>
+  ```
+
+## Object 拷貝/複製
 
 - Object 沒有拷貝或複製的狀況：
 
