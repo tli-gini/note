@@ -3,6 +3,7 @@
 - cd: change directory
 - mkdir: make directory
 - touch: create a file
+- ls: list the files
 
 # JavaScript-functions
 

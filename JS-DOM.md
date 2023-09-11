@@ -159,7 +159,7 @@ let spanElement = document.querySelector("#keyword");
 
 ```html
 <div id="content">這是一段字</div>
-<button onclick="change();">Click</button>
+<button onclick="change()">Click</button>
 <script>
   function change() {
     let divElm = document.querySelector("#content");

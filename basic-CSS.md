@@ -117,7 +117,15 @@ body {
 
 - flex-wrap: 將左右並排調整成上下並排
 
-- <br/> 的顯示和隱藏，控制內容是否換行
+```css
+@media (max-width: 1200px) {
+  .list {
+    flex-wrap: wrap;
+  }
+}
+```
+
+- br 的顯示和隱藏，控制內容是否換行
 
 ```css
 /* 換行 */
