@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX 網路連線實務</title>
+  </head>
+  <body>
+    <h2>AJAX / XHR 網路連線實務</h2>
+    <button onclick="getData();">連線取得資料</button>
+    <div id="result"></div>
+    <script>
+      //測試網址：
+      //https://cwpeng.github.io/live-records-samples/data/products.json
+
+      function getData() {
+        //利用 fetch 進行連線取得資料
+        fetch(
+          "https://cwpeng.github.io/live-records-samples/data/products.json"
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            //已經取得資料，把資料呈現到畫面上
+            //console.log(data);
+            let result = document.querySelector("#result");
+
+            //先把畫面清空
+            result.innerHTML = "";
+
+            for (let i = 0; i < data.length; i++) {
+              let product = data[i];
+              //console.log(product);
+              result.innerHTML +=
+                "<div>" +
+                product.name +
+                ", $ " +
+                product.price +
+                ", " +
+                product.description +
+                "</div>";
+              //用 "+=" 使資料不被覆蓋
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

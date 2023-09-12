@@ -73,6 +73,10 @@ fetch(網址)
   })
   .then(function (data) {
     console.log(data);
-    //JSON 格式資料
+    //JSON 格式 資料
   });
 ```
+
+### 測試網址
+
+https://cwpeng.github.io/live-records-samples/data/products.json
