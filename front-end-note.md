@@ -80,3 +80,95 @@ fetch(網址)
 ### 測試網址
 
 https://cwpeng.github.io/live-records-samples/data/products.json
+
+## 解構賦值 (Destructuring Assignment)
+
+- 解構：把陣列或物件中的資料拆開。
+- 賦值：將拆開的資料分別放入個別的變數中。
+
+### 陣列解構賦值：基本操作
+
+- 將陣列中的資料分開賦值給變數，按順序做對應。
+
+- 傳統做法：
+
+```js
+let arr = [3, 4, 5];
+let d1 = arr[0];
+let d2 = arr[1];
+let d3 = arr[2];
+```
+
+- 解構賦值語法
+
+```js
+let arr = [3, 4, 5];
+let [d1, d2, d3] = arr;
+```
+
+### 各種變形
+
+- 陣列解構賦值的變形寫法：
+
+1. 宣告與賦值分開
+
+```js
+let arr = [3, 4, 5];
+let d1, d2, d3;
+[d1, d2, d3] = arr;
+```
+
+2. 預設值
+
+```js
+let arr = [3, 4];
+let d1, d2, d3;
+[d1, d2 = 2, d3 = 5] = arr;
+```
+
+### 物件解構賦值：基本操作
+
+- 將物件中的資料分開賦值給變數，按物件成員名稱做對應。
+
+- 傳統做法：
+
+```js
+let obj = { x: 3, y: 4 };
+let x = obj.x;
+let y = obj.y;
+```
+
+- 解構賦值語法
+
+```js
+let obj = { x: 3, y: 4 };
+let { x, y } = obj;
+```
+
+### 各種變形
+
+- 物件解構賦值的變形寫法：
+
+1. 宣告與賦值分開
+
+```js
+let obj = { x: 3, y: 4 };
+let x, y;
+({ x, y } = obj); //注意：不和宣告一起執行，要多加()
+```
+
+2. 預設值
+
+```js
+let obj = { x: 3 };
+let x, y;
+({ x, y = 5 } = obj);
+```
+
+3. 指定新的變數名稱
+
+```js
+let obj = { x: 3, y: 4 };
+let newX, newY;
+({ x: newX, y: newY } = obj);
+```
