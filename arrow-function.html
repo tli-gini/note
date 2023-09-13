@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow Function</title>
+  </head>
+  <body>
+    <script>
+      //複習
+      //計算 1+2+3+...+10 的結果
+      //   function addToTen() {
+      //     let add = 0;
+      //     for (i = 1; i <= 10; i++) {
+      //       add += i;
+      //     }
+      //     console.log(add);
+      //   }
+      //   addToTen();
+
+      //計算 1+2+3+...+max 的結果
+      function addToTen(max) {
+        let add = 0;
+        for (i = 1; i <= max; i++) {
+          add += i;
+        }
+        console.log(add);
+      }
+      //呼叫函式
+      addToTen(10);
+      addToTen(20);
+
+      //return 回傳值
+      function calculate(max) {
+        let n = 1;
+        let result = 0;
+        while (n <= max) {
+          result += n;
+          n++;
+        }
+        return result;
+      }
+      //呼叫函式
+      calculate(20); //不會印出
+      //呼叫函式
+      let answer = calculate(20);
+      console.log(answer); //印出
+
+      //箭頭函式
+      let arrowCal = (max) => {
+        let a = 1;
+        let arrowResult = 0;
+        while (a <= max) {
+          arrowResult += a;
+          a++;
+        }
+        return arrowResult;
+      };
+      let arrowAns = arrowCal(10);
+      console.log(arrowAns);
+
+      //簡化的箭頭函式：只能寫 return
+
+      //範例：
+      //乘法的箭頭函式 (尚未簡化)
+      let multiply = (m1, m2) => {
+        return m1 * m2;
+      };
+      //呼叫函式
+      let ans = multiply(3, 4);
+      console.log(ans);
+
+      //乘法的箭頭函式 (簡化)
+      let Multiply = (m3, m4) => m3 * m4;
+      //呼叫函式
+      let Ans = Multiply(4, 5);
+      console.log(Ans);
+    </script>
+  </body>
+</html>
