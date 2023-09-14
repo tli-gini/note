@@ -200,3 +200,98 @@ function plus({ m1, m2 }) {
 plus({ m1: 3, m2: 4 });
 // 7
 ```
+
+## 其餘運算符號 (Rest Operator)
+
+- 顧名思義，把剩餘的東西包在一起。
+- 運算符號，三個點 ...
+- 運用在解構賦值：
+  - 陣列：把剩餘的資料包在一個新陣列。
+  - 物件：把剩餘的成員包在一個新物件。
+- 運用在函式參數：
+  - 把剩餘的參數包在一個新陣列。
+
+### ... - 陣列解構賦值
+
+- 未逐一指定名稱的剩餘值，運用其餘運算符號，包在新陣列中。
+- 陣列解構賦值的運用：
+
+```js
+let arr = [3, 4, 5, 6, 2];
+let [d1, d2, ...data] = arr;
+console.log(data);
+// [5,6,2]
+```
+
+- 限制：必須放最後面
+
+```js
+let arr = [3, 4, 5, 6, 2];
+let [d1, ...data, d2] = arr;
+// error
+```
+
+### ... - 物件解構賦值
+
+- 未逐一指定名稱的剩餘值，運用其餘運算符號，包在新物件中。
+- 物件解構賦值的運用：
+
+```js
+let obj = { x: 3, y: 4, z: 5 };
+let { x, ...data } = obj;
+console.log(data);
+// {y:4, z:5}
+```
+
+- 限制：必須放最後面
+
+```js
+et obj = { x: 3, y: 4, z: 5 };
+let { ...data, x } = obj;
+// error
+```
+
+### 其餘參數 (Rest Parameter)
+
+- 未逐一指定參數名稱的參數資料，運用其餘運算符號，包在陣列中。
+- 其餘參數的運用：
+
+```js
+function test(a, b, ...data) {
+  console.log(a, b);
+  // 3 4
+  console.log(data);
+  // [1, 2, 5]
+}
+test(3, 4, 1, 2, 5);
+```
+
+- 限制：必須放最後面
+
+```js
+function test(a, ...data, b) {
+  // error
+  console.log(a, b);
+  console.log(data);
+}
+```
+
+- 範例：
+
+```js
+function add(n1, n2, ...args) {
+  //其餘參數 Rest Parameter
+  console.log(n1, n2, args);
+  let total = n1 + n2;
+  for (let i = 0; i < args.length; i++) {
+    total = total + args[i];
+  }
+  console.log(total);
+  // 7
+  // 14
+  // 8
+}
+add(3, 4); // 3 4 []
+add(5, 6, 1, 2); // 5 6 [1, 2]
+add(1, 2, 3, 1, 1); // 1 2 [3, 1, 1]
+```
