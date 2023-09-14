@@ -81,7 +81,7 @@ fetch(網址)
 
 https://cwpeng.github.io/live-records-samples/data/products.json
 
-## 解構賦值 (Destructuring Assignment)
+## 解構賦值 ( )
 
 - 解構：把陣列或物件中的資料拆開。
 - 賦值：將拆開的資料分別放入個別的變數中。
@@ -124,6 +124,16 @@ let d1, d2, d3;
 let arr = [3, 4];
 let d1, d2, d3;
 [d1, d2 = 2, d3 = 5] = arr;
+```
+
+3. 變數資料交換
+
+```js
+let n1 = 3,
+  n2 = 4;
+[n2, n1] = [n1, n2];
+console.log(n1, n2);
+//4 3
 ```
 
 ### 物件解構賦值：基本操作
@@ -171,4 +181,22 @@ let x, y;
 let obj = { x: 3, y: 4 };
 let newX, newY;
 ({ x: newX, y: newY } = obj);
+```
+
+4. 統整函式的物件參數
+
+```js
+function add(args) {
+  console.log(args.n1 + args.n2);
+}
+add({ n1: 3, n2: 4 });
+// 7
+```
+
+```js
+function plus({ m1, m2 }) {
+  console.log(m1 + m2);
+}
+plus({ m1: 3, m2: 4 });
+// 7
 ```
