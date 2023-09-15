@@ -295,3 +295,105 @@ add(3, 4); // 3 4 []
 add(5, 6, 1, 2); // 5 6 [1, 2]
 add(1, 2, 3, 1, 1); // 1 2 [3, 1, 1]
 ```
+
+## 模組 Modules
+
+- 單一程式切割為多個檔案，每個檔案稱之為模組。
+- 早期的前端 JavaScript 沒有良好的模組支援，可使用 Webpack 解決。
+- 現代的前端 JavaScript 擁有完整的模組能力，支援獨立的模組名稱空間，以及 export / import 語法。
+
+#### 假設有一個很大的程式
+
+```js
+function echo(msg) {
+  console.log(msg);
+}
+let message = "很大的程式";
+echo(message);
+```
+
+#### 想要切割為兩個檔案
+
+- 使用 JavaScript 模組系統
+
+1. 檔案名稱：lib.js
+
+```js
+function echo(msg) {
+  console.log(msg);
+}
+```
+
+2. 檔案名稱：main.js
+
+```js
+let message = "很大的程式";
+echo(message);
+```
+
+3. HTML 中引入主要的程式檔案
+
+```html
+<script type="module" src="main.js"></script>
+```
+
+- 錯誤：不同檔案沒有互通，無法呼叫函式
+
+### 建立輸出輸入的關聯性
+
+- 使用 export 語法輸出資料
+- 使用 import 語法輸入資料
+
+1. 檔案名稱：lib.js
+
+```js
+function echo(msg) {
+  console.log(msg);
+}
+
+export default echo;
+// export default 資料
+```
+
+2. 檔案名稱：main.js
+
+```js
+import echo from "./lib.js";
+// import 資料 from "模組檔案路徑"
+
+let message = "很大的程式";
+echo(message);
+```
+
+3. HTML 中引入主要的程式檔案
+
+不變
+
+```html
+<script type="module" src="main.js"></script>
+```
+
+### 模組的獨立性
+
+- 模組有各自的名稱空間，互不影響。
+
+1. 檔案名稱：lib.js
+
+```js
+function echo(msg) {
+  console.log(msg);
+}
+let message = "Hello World";
+echo(message);
+
+export default echo;
+```
+
+2. 檔案名稱：main.js
+
+```js
+import echo from "./lib.js";
+
+let message = "很大的程式";
+echo(message);
+```
