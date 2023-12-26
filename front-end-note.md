@@ -397,3 +397,133 @@ import echo from "./lib.js";
 let message = "很大的程式";
 echo(message);
 ```
+
+## 原型鏈 Prototype Chain
+
+### 取得原型物件：
+
+- Object.getPrototypeOf(物件)
+
+```js
+// 定義一個類別
+class Car {
+  constructor(color) {
+    this.color = color;
+  }
+  run() {}
+}
+
+// 產生類別物件
+let car = new Car("green");
+
+// 取得並將原型物件顯示出來
+let carProto = Object.getPrototypeOf(car); // Car 原型物件
+console.log(carProto);
+let objProto = Object.getPrototypeOf(carProto); // Object 原型物件
+console.log(objProto);
+let lastOne = Object.getPrototypeOf(objProto); // 原型鏈的終點：null
+console.log(lastOne);
+```
+
+### 繼承關係中的原型鏈：
+
+```js
+// 定義一個類別
+class Car {
+  constructor(color) {
+    this.color = color;
+  }
+  run() {}
+}
+
+// 定義子類別
+class ElectricCar extends Car {
+  constructor(color) {
+    super(color);
+    this.battery = 100;
+  }
+  run(distance) {}
+  charge() {}
+}
+
+// 產生子類別物件
+let car = new ElectricCar("green");
+car.run(); // how to work?
+```
+
+### 在物件實體上，直接定義屬性或方法
+
+```js
+// 定義一個類別
+class Car {
+  constructor(color) {
+    this.color = color;
+  }
+  run() {}
+}
+
+// 定義子類別
+class ElectricCar extends Car {
+  constructor(color) {
+    super(color);
+    this.battery = 100;
+  }
+  run(distance) {}
+  charge() {}
+}
+
+// 產生子類別物件
+let car = new ElectricCar("green");
+// 在物件實體直接建立方法或屬性
+car.name = "toyota";
+car.test = function () {
+  console.log("建立物件後，在物件實體上新增方法");
+  console.log(this.name); // Output: toyota
+};
+car.test();
+```
+
+## 定義、呼叫靜態方法 Static
+
+### 靜態方法：與類別綁定的方法
+
+- 在類別中，定義靜態方法
+
+```js
+static 方法名稱(參數){內部程式碼}
+```
+
+- 呼叫靜態方法
+
+```js
+類別名稱.方法名稱(參數);
+```
+
+- 靜態方法和類別綁定
+- 其他方法或屬性和物件實體綁定
+
+```js
+class Car {
+  constructor(color) {
+    this.color = color;
+  }
+  run() {
+    console.log("Color " + this.color + " Running");
+  }
+  static showColors() {
+    // 定義一個靜態方法
+    console.log("We support three colors: blue, red, green.");
+  }
+}
+
+// 直接使用類別名稱，呼叫靜態方法
+Car.showColors();
+Car.run(); // Uncaught TypeError: Car.run is not a function
+// run 非靜態方法，必須由物件實體呼叫
+
+// 產生新物件實體
+let carObj = new Car("blue");
+carObj.run(); // 使用物件實體，呼叫物件的方法 run();
+carObj.showColors(); // Uncaught TypeError: carObj.showColors is not a function
+// showColors 為靜態方法，必須由類別名稱呼叫
+```
