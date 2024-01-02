@@ -527,3 +527,82 @@ carObj.run(); // 使用物件實體，呼叫物件的方法 run();
 carObj.showColors(); // Uncaught TypeError: carObj.showColors is not a function
 // showColors 為靜態方法，必須由類別名稱呼叫
 ```
+
+## 使用 Promise 處理非同步程式
+
+- 不使用 callback 的非同步處理
+
+#### 使用 Promise 物件串接非同步流程
+
+- new Promise(執行函式(成功程序, 失敗程序));
+
+#### 使用 then() 方法接續工作
+
+- then(
+  函式(){成功時的動作},
+  函式(){失敗時的動作}
+  )
+
+#### 使用 catch() 方法接續失敗處理
+
+- catch(
+  函式(){失敗時的動作}
+  )
+
+#### 實作範例
+
+```js
+function getData() {
+  return new Promise(function (resolve, reject) {
+    let req = new XMLHttpRequest();
+    req.open("get", "data.txt");
+    // Configure it: GET-request for the URL data.txt
+
+    req.onload = function () {
+      // 如何將連線後得到的資料 this.responseText, 串接到主流程上
+      resolve(this.responseText);
+    };
+    req.send();
+    // Send the request over the network
+  });
+}
+
+// 主流程：
+let dataPromise = getData(); // 呼叫getData()，嘗試從網路取得資料，回傳 Promise 物件
+dataPromise.then(function (result) {
+  console.log(result);
+  // 可從參數 result, 正確取得連線後得到的資料
+});
+```
+
+失敗：註冊
+
+```js
+function getData() {
+  return new Promise(function (resolve, reject) {
+    let req = new XMLHttpRequest();
+    req.open("get", "data.txt");
+
+    req.onload = function () {
+      resolve(this.responseText);
+    };
+    req.onerror = function () {
+      // 註冊 error 事件
+      reject("Error"); // 失敗時，做出失敗報告
+    };
+    req.send();
+  });
+}
+
+// 主流程：
+// 嘗試從網路取得資料，回傳 Promise 物件，並接續工作
+getData().then(
+  function (result) {
+    console.log(result);
+  },
+  function (error) {
+    // 這裡可以從參數 error, 取得失敗報告
+    console.log(error);
+  }
+);
+```

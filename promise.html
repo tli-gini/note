@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>處理非同步程式：Promise 物件</title>
+    <script>
+      //用 AJAX 連線作示範
+      function getData() {
+        // 設定兩個參數：成功, 失敗
+        return new Promise(function (resolve, reject) {
+          // 主要工作：AJAX 連線
+          let req = new XMLHttpRequest();
+          req.open(
+            "get",
+            "https://training.pada-x.com/resources/javascript-es6-react/data.out"
+          );
+          req.onload = function () {
+            // 伺服器回傳的資料，透過 resolve 報告傳遞出去
+            resolve(this.responseText); // 報告成功
+          };
+          req.onerror = function () {
+            // 透過 reject 報告失敗
+            reject("Error");
+          };
+          req.send();
+        });
+      }
+
+      // getData() return  Promise 物件
+      let promise = getData();
+      // 透過 Promise 物件的 then() 方法
+      promise.then(
+        function (result) {
+          alert(result); // 成功
+        },
+        function (error) {
+          alert(error); // 失敗（印出 "Error" 字串）
+        }
+      );
+
+      /*
+      // catch 寫法
+      let promise = getData();
+      promise
+        .then(function (result) {
+          alert(result);
+        })
+        .catch(function (err) {
+          alert(err);
+        });
+
+    */
+    </script>
+  </head>
+  <body></body>
+</html>
